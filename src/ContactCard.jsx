@@ -1,0 +1,56 @@
+import { motion } from 'framer-motion'
+const ContactCards=({contact_info,setSelectedContact})=>{
+
+
+    console.log(contact_info)
+    return(
+        <>
+
+            {contact_info?.map((contact,index)=>
+                
+                <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: index/5 }}
+          drag={false}
+          dragElastic={1}
+          dragConstraints={{ top: 1, bottom: 1, right: 1, left: 1 }}
+          className="bg-white text-white h-80 rounded-lg shadow-md"
+          key={index}
+          onClick={() => setSelectedContact(contact)}
+        >
+        <img alt="user"
+        className="w-32 h-32 rounded-full mx-auto"
+         src={contact.picture.large}/>
+        <figcaption className="text-center">
+        <p className="text-gray-700 font-semiblod text-xl md-2">
+          {`${contact.name.title}. ${contact.name.first} ${contact.name.last}`}
+            </p>
+        <p className='text-gray-500'><span className='font-medium'>email:</span>
+         {contact.email}
+             </p>
+        <p className='text-gray-500'><span className='font-medium'>phone:</span>
+            {contact.phone}
+            </p>
+            <p className='text-gray-500'><span className='font-medium'>city:</span>
+          {contact.location.city}
+            </p>
+        </figcaption >
+
+        
+      
+
+        </motion.button>
+
+                
+                )}
+
+       
+
+        </>
+    )
+
+
+}
+
+export default ContactCards
